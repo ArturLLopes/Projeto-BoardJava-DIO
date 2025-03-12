@@ -13,54 +13,89 @@ public class BoardDAO {
 
     private final Connection connection;
 
-    public BoardEntity insert (final BoardEntity entity)throws SQLException{
-        var sql = "INSERT INTO BOARDS (name) values (?)";
-        try(var statement = connection.prepareStatement(sql)){
-            statement.setString(1,entity.getName());
+    /**
+     * Insere um novo board na base de dados.
+     *
+     * @param entity A entidade do board a ser inserida.
+     * @return A entidade do board com o ID atribuído após a inserção.
+     * @throws SQLException Caso ocorra um erro ao acessar o banco de dados.
+     */
+    public BoardEntity insert(final BoardEntity entity) throws SQLException {
+        var sql = "INSERT INTO BOARDS (name) VALUES (?)";  // Comando SQL para inserção de um novo board.
+        try (var statement = connection.prepareStatement(sql)) {
+            // Atribui o nome do board à consulta.
+            statement.setString(1, entity.getName());
+            // Executa a inserção.
             statement.executeUpdate();
-            if (statement instanceof StatementImpl impl){
+
+            // Obtém o ID gerado para a entidade e a define.
+            if (statement instanceof StatementImpl impl) {
                 entity.setId(impl.getLastInsertID());
             }
-    }
-        return entity;
+        }
+        return entity;  // Retorna a entidade inserida com o ID gerado.
     }
 
-    public  void delete(final Long id)throws SQLException{
-        var sql = "DELETE FROM BOARDS WHERE id = ?";
-        try(var statement = connection.prepareStatement(sql)){
-            statement.setLong(1,id);
+    /**
+     * Deleta um board baseado no seu ID.
+     *
+     * @param id O ID do board a ser deletado.
+     * @throws SQLException Caso ocorra um erro ao acessar o banco de dados.
+     */
+    public void delete(final Long id) throws SQLException {
+        var sql = "DELETE FROM BOARDS WHERE id = ?";  // Comando SQL para excluir o board.
+        try (var statement = connection.prepareStatement(sql)) {
+            // Define o ID do board a ser excluído na consulta.
+            statement.setLong(1, id);
+            // Executa a exclusão.
             statement.executeUpdate();
         }
-
     }
 
-    public Optional<BoardEntity> findById (final  Long id)throws SQLException{
-        var sql = "SELECT id, name FROM BOARDS WHERE id = ?";
-        try(var statement = connection.prepareStatement(sql)){
-            statement.setLong(1,id);
+    /**
+     * Busca um board pelo seu ID.
+     *
+     * @param id O ID do board a ser encontrado.
+     * @return Um Optional contendo o board encontrado ou vazio se não encontrado.
+     * @throws SQLException Caso ocorra um erro ao acessar o banco de dados.
+     */
+    public Optional<BoardEntity> findById(final Long id) throws SQLException {
+        var sql = "SELECT id, name FROM BOARDS WHERE id = ?";  // Comando SQL para buscar um board por ID.
+        try (var statement = connection.prepareStatement(sql)) {
+            // Define o ID na consulta.
+            statement.setLong(1, id);
+            // Executa a consulta.
             statement.executeQuery();
             var resultSet = statement.getResultSet();
-            if(resultSet.next()){
+
+            // Verifica se um resultado foi retornado.
+            if (resultSet.next()) {
                 var entity = new BoardEntity();
-                entity.setId(resultSet.getLong("id"));
-                entity.setName(resultSet.getString("name"));
-                return Optional.of(entity);
+                entity.setId(resultSet.getLong("id"));  // Define o ID do board encontrado.
+                entity.setName(resultSet.getString("name"));  // Define o nome do board encontrado.
+                return Optional.of(entity);  // Retorna o board encontrado.
             }
-
         }
-            return Optional.empty();
-
+        return Optional.empty();  // Retorna Optional vazio se o board não for encontrado.
     }
 
-    public boolean exists(final Long id) throws SQLException{
-        var sql = "SELECT 1 FROM  BOARDS WHERE id = ?";
-        try(var statement = connection.prepareStatement(sql)){
-            statement.setLong(1,id);
+    /**
+     * Verifica se um board existe na base de dados com base no seu ID.
+     *
+     * @param id O ID do board a ser verificado.
+     * @return True se o board existir, false caso contrário.
+     * @throws SQLException Caso ocorra um erro ao acessar o banco de dados.
+     */
+    public boolean exists(final Long id) throws SQLException {
+        var sql = "SELECT 1 FROM BOARDS WHERE id = ?";  // Comando SQL para verificar a existência do board.
+        try (var statement = connection.prepareStatement(sql)) {
+            // Define o ID na consulta.
+            statement.setLong(1, id);
+            // Executa a consulta.
             statement.executeQuery();
+            // Retorna true se um resultado for encontrado.
             return statement.getResultSet().next();
-
         }
-
     }
-
 }
+

@@ -128,7 +128,39 @@ public class BoardMenu {
 
 
     private void unblockCard() {
+        // Solicita o ID do board
+        System.out.println("Informe o id do board");
+        Long boardId = scanner.nextLong();  // Garante que boardId seja do tipo Long
+
+        // Solicita o ID do card que será desbloqueado
+        System.out.println("Informe o id do card que será desbloqueado");
+        Long cardId = scanner.nextLong();  // Garante que cardId seja do tipo Long
+
+        // Consome a quebra de linha pendente antes de capturar o motivo completo
+        scanner.nextLine();
+
+        // Solicita o motivo do desbloqueio do card
+        System.out.println("Informe o motivo do desbloqueio do card");
+        String reason = scanner.nextLine();  // O motivo será capturado como String
+
+        try (var connection = getConnection()) {
+            // Chama o método unblock passando boardId, cardId e reason
+            new CardService(connection).unblock(boardId, cardId, reason);
+
+            // Mensagem de sucesso após o desbloqueio
+            System.out.println("O card de ID " + cardId + " foi desbloqueado com sucesso!");
+
+        } catch (SQLException ex) {
+            // Erro relacionado à conexão com o banco de dados
+            System.out.println("Erro ao conectar com o banco de dados: " + ex.getMessage());
+        } catch (RuntimeException ex) {
+            // Erro relacionado ao desbloqueio do card
+            System.out.println("Erro ao desbloquear o card: " + ex.getMessage());
+        }
     }
+
+
+
 
     private void cancelCard() throws SQLException {
         System.out.println("Informe o ID do board:");

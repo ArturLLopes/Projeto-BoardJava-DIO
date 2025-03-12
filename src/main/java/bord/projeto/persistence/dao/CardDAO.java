@@ -104,6 +104,4 @@ public class CardDAO {
                 resultSet.getString("bc.name")
         );
     }
-
-
 }
