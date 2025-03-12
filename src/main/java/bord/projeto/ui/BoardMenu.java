@@ -3,6 +3,7 @@ package bord.projeto.ui;
 import bord.projeto.dto.BoardColumnInfoDTO;
 import bord.projeto.exception.CardBlockedException;
 import bord.projeto.exception.CardFinishedException;
+import bord.projeto.exception.EntityNotFoundException;
 import bord.projeto.persistence.entity.BoardColumnEntity;
 import bord.projeto.persistence.entity.BoardEntity;
 import bord.projeto.persistence.entity.CardEntity;
@@ -100,8 +101,33 @@ public class BoardMenu {
     private void unblockCard() {
     }
 
-    private void cancelCard() {
+    private void cancelCard() throws SQLException {
+        System.out.println("Informe o ID do board:");
+        var boardId = scanner.nextLong(); // Solicita o ID do board
+        System.out.println("Informe o ID do card que deseja cancelar:");
+        var cardId = scanner.nextLong();  // Solicita o ID do card
+
+        var cancelColumn = entity.getCancelColumn(); // Obtém a coluna de cancelamento
+        if (cancelColumn == null) {
+            System.out.println("Erro: Coluna de cancelamento não encontrada.");
+            return;
+        }
+
+        // Mapeia as colunas do board para DTO
+        var boardColumnsInfo = entity.getBoardColumns().stream()
+                .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
+                .toList();
+
+        // Tenta cancelar o card
+        try (var connection = getConnection()) {
+            var cardService = new CardService(connection);
+            cardService.cancel(boardId, cardId, cancelColumn.getId(), boardColumnsInfo);
+            System.out.println("O card foi movido para a coluna de cancelamento com sucesso!");
+        } catch (EntityNotFoundException | IllegalStateException ex) {
+            System.out.println("Erro ao cancelar o card: " + ex.getMessage());
+        }
     }
+
 
     private void showBoard() throws SQLException {
         try(var connection = getConnection()){
