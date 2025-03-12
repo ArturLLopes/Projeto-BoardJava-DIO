@@ -1,67 +1,37 @@
-mar. 11, 2025 5:33:53 PM liquibase.changelog
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202511031257.sql
-mar. 11, 2025 5:33:53 PM liquibase.changelog
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202511031648.sql
-mar. 11, 2025 5:33:53 PM liquibase.changelog
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202511031701.sql
-mar. 11, 2025 5:33:53 PM liquibase.changelog
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading resource: db/changelog/migrations/db.changelog-202511031704.sql
-mar. 11, 2025 5:33:53 PM liquibase.changelog
-INFORMAÇÕES: Creating database history table with name: board.DATABASECHANGELOG
-mar. 11, 2025 5:33:53 PM liquibase.changelog
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading from board.DATABASECHANGELOG
-mar. 11, 2025 5:33:54 PM liquibase.lockservice
-INFORMAÇÕES: Successfully acquired change log lock
-mar. 11, 2025 5:33:54 PM liquibase.command
-INFORMAÇÕES: Using deploymentId: 1725234470
-mar. 11, 2025 5:33:54 PM liquibase.changelog
+Database is up to date, no changesets to execute
+mar. 12, 2025 11:43:35 AM liquibase.changelog
 INFORMAÇÕES: Reading from board.DATABASECHANGELOG
-Running Changeset: db/changelog/migrations/db.changelog-202511031257.sql::202511031257::artur
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: Custom SQL executed
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: ChangeSet db/changelog/migrations/db.changelog-202511031257.sql::202511031257::artur ran successfully in 39ms
-Running Changeset: db/changelog/migrations/db.changelog-202511031648.sql::202511031257::artur
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: Custom SQL executed
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: ChangeSet db/changelog/migrations/db.changelog-202511031648.sql::202511031257::artur ran successfully in 39ms
-Running Changeset: db/changelog/migrations/db.changelog-202511031701.sql::202511031257::artur
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: Custom SQL executed
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: ChangeSet db/changelog/migrations/db.changelog-202511031701.sql::202511031257::artur ran successfully in 39ms
-Running Changeset: db/changelog/migrations/db.changelog-202511031704.sql::202511031257::artur
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: Custom SQL executed
-mar. 11, 2025 5:33:54 PM liquibase.changelog
-INFORMAÇÕES: ChangeSet db/changelog/migrations/db.changelog-202511031704.sql::202511031257::artur ran successfully in 37ms
 
 UPDATE SUMMARY
-Run:                          4
-Previously run:               0
+Run:                          0
+Previously run:               4
 Filtered out:                 0
 -------------------------------
 Total change sets:            4
 
-mar. 11, 2025 5:33:54 PM liquibase.util
+mar. 12, 2025 11:43:35 AM liquibase.util
 INFORMAÇÕES: UPDATE SUMMARY
-mar. 11, 2025 5:33:54 PM liquibase.util
-INFORMAÇÕES: Run:                          4
-mar. 11, 2025 5:33:54 PM liquibase.util
-INFORMAÇÕES: Previously run:               0
-mar. 11, 2025 5:33:54 PM liquibase.util
+mar. 12, 2025 11:43:35 AM liquibase.util
+INFORMAÇÕES: Run:                          0
+mar. 12, 2025 11:43:35 AM liquibase.util
+INFORMAÇÕES: Previously run:               4
+mar. 12, 2025 11:43:35 AM liquibase.util
 INFORMAÇÕES: Filtered out:                 0
-mar. 11, 2025 5:33:54 PM liquibase.util
+mar. 12, 2025 11:43:35 AM liquibase.util
 INFORMAÇÕES: -------------------------------
-mar. 11, 2025 5:33:54 PM liquibase.util
+mar. 12, 2025 11:43:35 AM liquibase.util
 INFORMAÇÕES: Total change sets:            4
-mar. 11, 2025 5:33:54 PM liquibase.util
+mar. 12, 2025 11:43:35 AM liquibase.util
 INFORMAÇÕES: Update summary generated
-mar. 11, 2025 5:33:54 PM liquibase.command
-INFORMAÇÕES: Update command completed successfully.
-Liquibase: Update has been successful. Rows affected: 4
-mar. 11, 2025 5:33:54 PM liquibase.lockservice
-INFORMAÇÕES: Successfully released change log lock
-mar. 11, 2025 5:33:54 PM liquibase.command
+mar. 12, 2025 11:43:35 AM liquibase.command
 INFORMAÇÕES: Command execution complete

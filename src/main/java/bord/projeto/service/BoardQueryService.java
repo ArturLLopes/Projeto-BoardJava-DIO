@@ -24,6 +24,6 @@ public class BoardQueryService {
             entity.setBoardColumn(bordColumnDAO.findByBoardId(entity.getId()));
             return Optional.of(entity);
         }
+        return Optional.empty();
     }
-
 }

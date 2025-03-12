@@ -1,6 +1,7 @@
 package bord.projeto;
 
 import bord.projeto.persistence.config.migration.MigrationStrategy;
+import bord.projeto.ui.MainMenu;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
@@ -16,6 +17,7 @@ public class ProjetoBordJavaApplication {
 		try (var connection = getConnection()) {
 			new MigrationStrategy(connection).executeMigration();
 		}
+		new MainMenu().execute();
 	}
 
 }
