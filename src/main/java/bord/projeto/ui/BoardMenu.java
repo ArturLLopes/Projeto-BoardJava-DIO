@@ -96,7 +96,36 @@ public class BoardMenu {
 
 
     private void blockCard() {
+        // Solicita o ID do board ao usuário
+        System.out.println("Informe o id do board");
+        var boardId = scanner.nextLong(); // Captura o ID do board
+
+        // Solicita o ID do card ao usuário
+        System.out.println("Informe o id do card que será bloqueado");
+        var cardId = scanner.nextLong();
+        scanner.nextLine();
+        System.out.println("Informe o motivo do bloqueio do card");
+        var reason = scanner.nextLine(); // Captura a linha inteira como motivo do bloqueio
+
+        // Mapeia as colunas do board para um DTO
+        var boardColumnsInfo = entity.getBoardColumns().stream()
+                .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
+                .toList();
+
+        // Tenta obter a conexão com o banco e chamar o serviço para bloquear o card
+        try (var connection = getConnection()) {
+            // Chama o método block passando o ID do board, do card, o motivo e as colunas do board
+            new CardService(connection).block(boardId, cardId, reason, boardColumnsInfo);
+        } catch (SQLException ex) {
+            // Captura erros de conexão com o banco de dados
+            System.out.println("Erro ao conectar com o banco de dados: " + ex.getMessage());
+        } catch (RuntimeException ex) {
+            // Captura exceções genéricas durante o bloqueio do card
+            System.out.println("Erro ao bloquear o card: " + ex.getMessage());
+        }
     }
+
+
 
     private void unblockCard() {
     }
