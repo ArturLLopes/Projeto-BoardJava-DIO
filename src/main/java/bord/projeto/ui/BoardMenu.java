@@ -1,5 +1,8 @@
 package bord.projeto.ui;
 
+import bord.projeto.dto.BoardColumnInfoDTO;
+import bord.projeto.exception.CardBlockedException;
+import bord.projeto.exception.CardFinishedException;
 import bord.projeto.persistence.entity.BoardColumnEntity;
 import bord.projeto.persistence.entity.BoardEntity;
 import bord.projeto.persistence.entity.CardEntity;
@@ -69,8 +72,27 @@ public class BoardMenu {
         }
     }
 
-    private void moveCardToNextColumn() {
+    private void moveCardToNextColumn() throws SQLException {
+        System.out.println("Informe o ID do board:");
+        var boardId = scanner.nextLong(); // Solicita o ID do board
+        System.out.println("Informe o ID do card que deseja mover para a próxima coluna:");
+        var cardId = scanner.nextLong();  // Solicita o ID do card
+
+        // Mapeia as colunas do board para a DTO necessária
+        var boardColumnsInfo = entity.getBoardColumns().stream()
+                .map(bc -> new BoardColumnInfoDTO(bc.getId(), bc.getOrder(), bc.getKind()))
+                .toList();
+
+        // Tenta mover o card para a próxima coluna
+        try (var connection = getConnection()) {
+            var cardService = new CardService(connection);
+            cardService.moveToNextColumn(boardId, cardId, boardColumnsInfo);
+            System.out.println("Card movido com sucesso!");
+        } catch (CardBlockedException | CardFinishedException | IllegalStateException ex) {
+            System.out.println("Erro ao mover o card: " + ex.getMessage());
+        }
     }
+
 
     private void blockCard() {
     }
