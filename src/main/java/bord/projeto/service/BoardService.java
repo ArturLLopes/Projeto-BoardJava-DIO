@@ -1,8 +1,8 @@
 package bord.projeto.service;
 
-import bord.projeto.persistence.config.dao.BoardColumnDAO;
-import bord.projeto.persistence.config.dao.BoardDAO;
-import bord.projeto.persistence.config.entity.BoardEntity;
+import bord.projeto.persistence.dao.BoardColumnDAO;
+import bord.projeto.persistence.dao.BoardDAO;
+import bord.projeto.persistence.entity.BoardEntity;
 import lombok.AllArgsConstructor;
 
 import java.sql.Connection;
@@ -21,7 +21,7 @@ public class BoardService {
         var boardColumnDAO = new BoardColumnDAO(connection);
         try {
             doa.insert(entity);
-            var columns = entity.getBoardColumn().stream().map(c ->{
+            var columns = entity.getBoardColumns().stream().map(c ->{
                 c.setBoard(entity);
                 return c;
             }).toList();

@@ -1,12 +1,11 @@
-package bord.projeto.persistence.config.dao;
+package bord.projeto.persistence.dao;
 
-import bord.projeto.persistence.config.entity.BoardEntity;
+import bord.projeto.persistence.entity.BoardEntity;
 import com.mysql.cj.jdbc.StatementImpl;
 import lombok.AllArgsConstructor;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Optional;
 
 @AllArgsConstructor

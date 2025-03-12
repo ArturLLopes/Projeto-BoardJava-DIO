@@ -1,12 +1,12 @@
 package bord.projeto;
 
-import bord.projeto.persistence.config.migration.MigrationStrategy;
+import bord.projeto.persistence.migration.MigrationStrategy;
 import bord.projeto.ui.MainMenu;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.SQLException;
 
-import static bord.projeto.persistence.config.ConnectionConfig.getConnection;
+import static bord.projeto.persistence.ConnectionConfig.getConnection;
 
 @SpringBootApplication
 public class ProjetoBordJavaApplication {

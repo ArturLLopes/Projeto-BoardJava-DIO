@@ -1,8 +1,8 @@
 package bord.projeto.ui;
 
-import bord.projeto.persistence.config.entity.BoardColumnEntity;
-import bord.projeto.persistence.config.entity.BoardColumnKindEnum;
-import bord.projeto.persistence.config.entity.BoardEntity;
+import bord.projeto.persistence.entity.BoardColumnEntity;
+import bord.projeto.persistence.entity.BoardColumnKindEnum;
+import bord.projeto.persistence.entity.BoardEntity;
 import bord.projeto.service.BoardQueryService;
 import bord.projeto.service.BoardService;
 
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static bord.projeto.persistence.config.ConnectionConfig.getConnection;
-import static bord.projeto.persistence.config.entity.BoardColumnKindEnum.*;
+import static bord.projeto.persistence.ConnectionConfig.getConnection;
+import static bord.projeto.persistence.entity.BoardColumnKindEnum.*;
 
 public class MainMenu {
 
@@ -77,7 +77,7 @@ public class MainMenu {
         columns.add(createColumn(cancelColumnName, CANCEL, additionalColumns + 2));
 
         // Associando a lista de colunas ao board
-        entity.setBoardColumn(columns);
+        entity.setBoardColumns(columns);
 
         // Obtendo uma conexão com o banco de dados e inserindo o board no banco
         try (var connection = getConnection()) {

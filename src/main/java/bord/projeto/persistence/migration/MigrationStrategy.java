@@ -1,4 +1,4 @@
-package bord.projeto.persistence.config.migration;
+package bord.projeto.persistence.migration;
 
 
 import liquibase.Liquibase;
@@ -13,7 +13,7 @@ import java.io.PrintStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static bord.projeto.persistence.config.ConnectionConfig.getConnection;
+import static bord.projeto.persistence.ConnectionConfig.getConnection;
 
 @AllArgsConstructor
 public class MigrationStrategy {

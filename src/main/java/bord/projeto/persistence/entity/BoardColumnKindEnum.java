@@ -1,4 +1,4 @@
-package bord.projeto.persistence.config.entity;
+package bord.projeto.persistence.entity;
 
 import java.util.stream.Stream;
 

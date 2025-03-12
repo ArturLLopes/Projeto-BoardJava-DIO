@@ -1,4 +1,4 @@
-package bord.projeto.persistence.config;
+package bord.projeto.persistence;
 
 
 
